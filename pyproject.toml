@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "v2s"
+version = "0.1.0"
+description = "Video to subtitles with Whisper, translation, and subtitle burn-in."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "fakeoder" }]
+keywords = ["whisper", "subtitle", "ffmpeg", "translation", "video"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: End Users/Desktop",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+]
+dependencies = [
+  "click>=8.1,<9",
+  "deep-translator>=1.11,<2",
+  "faster-whisper>=1.1,<3",
+  "huggingface-hub>=0.23,<2",
+  "imageio-ffmpeg>=0.5,<1",
+  "pysubs2>=1.7,<2",
+  "requests>=2.31,<3",
+  "rich>=13,<15",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8,<9",
+  "pyinstaller>=6.7,<7",
+  "pyinstaller-hooks-contrib>=2024.8,<2027",
+]
+gui = [
+  "PySide6>=6.6,<7",
+]
+
+[project.scripts]
+v2s = "v2s.cli:main"
+v2s-gui = "v2s.gui_app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
